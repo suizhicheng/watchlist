@@ -38,6 +38,13 @@ def init_database(drop):
         db.drop_all()
     db.create_all()
     click.echo('Initialized database.')  # 输出提示信息
+@app.errorhandler(404)  # 传入要处理的错误代码
+def page_not_found(error):  # 接受异常对象作为参数
+    return render_template('404.html'), 404
+@app.context_processor
+def inject_user():  # 函数名可以随意修改
+    user = db.session.execute(select(User)).scalar()
+    return dict(user=user)  # 需要返回字典，等同于 return {'user': user}
 @app.cli.command()
 def forge():
     """Generate fake data."""
@@ -70,10 +77,10 @@ def forge():
 # 定义主页路由，渲染模板
 @app.route('/')
 def index():
-    user = db.session.execute(select(User)).scalar()  # 读取用户记录
+
     movies = db.session.execute(select(Movie)).scalars().all()  # 读取所有电影记录
-    return render_template('index.html', user=user, movies=movies)
-    # 传入模板变量：name和movies，渲染index.html
+    return render_template('index.html', movies=movies)  # 仅传movies即可
+
 
 
 # 运行程序（仅在直接执行app.py时生效）
