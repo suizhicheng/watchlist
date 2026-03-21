@@ -10,10 +10,10 @@
     {% endblock %}
 </head>
 <body>
-    <!-- 渲染flash提示信息 -->
-{% for message in get_flashed_messages() %}
-    <div class="alert">{{ message }}</div>
-{% endfor %}
+    <!-- 渲染flash提示消息 -->
+    {% for message in get_flashed_messages() %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
 
     <h2>
         <img alt="Avatar" class="avatar" src="{{ url_for('static', filename='images/avatar.png') }}">
@@ -22,9 +22,16 @@
     <nav>
         <ul>
             <li><a href="{{ url_for('index') }}">Home</a></li>
+            <!-- 根据登录状态显示不同导航 -->
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('settings') }}">Settings</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
         </ul>
     </nav>
-    {% block content %}{% endblock %}  <!-- 子模板填充内容的位置 -->
+    {% block content %}{% endblock %}
     <footer>
         <small>&copy; 2026 <a href="http://helloflask.com/book/3">HelloFlask</a></small>
     </footer>

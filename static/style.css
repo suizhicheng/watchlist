@@ -1,5 +1,4 @@
 
-
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     max-width: 800px;
@@ -10,10 +9,11 @@ body {
 /* 导航栏样式 */
 nav ul {
     list-style-type: none;
-    margin: 0;
+    margin: 0 0 20px 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    border-radius: 2px;
 }
 
 nav li {
@@ -32,19 +32,22 @@ nav li a:hover {
     background-color: #111;
 }
 
-
-/* 覆盖某些浏览器对 input 元素定义的字体 */
+/* 表单样式 */
 input[type=submit] {
     font-family: inherit;
 }
 
 input[type=text] {
     border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 3px;
 }
 
 input[name=year] {
     width: 50px;
 }
+
+/* 按钮样式（和第一张一致） */
 .btn {
     font-size: 12px;
     padding: 3px 5px;
@@ -54,21 +57,21 @@ input[name=year] {
     color: black;
     border: 1px solid #555555;
     border-radius: 5px;
+    margin-left: 5px;
 }
 
 .btn:hover {
-    text-decoration: none;
     background-color: black;
     color: white;
     border: 1px solid black;
 }
 
-
-/* 右侧浮动样式 */
+/* 右侧浮动样式（核心：让按钮/IMDb右对齐） */
 .float-right {
     float: right;
 }
-/*alert 类为提示消息增加样式：*/
+
+/* alert提示消息样式 */
 .alert {
     position: relative;
     padding: 7px;
@@ -79,7 +82,8 @@ input[name=year] {
     border-color: #b8daff;
     border-radius: 5px;
 }
-/* IMDb链接样式 */
+
+/* IMDb链接样式（和第一张完全一致） */
 .imdb {
     font-size: 12px;
     font-weight: bold;
@@ -88,45 +92,55 @@ input[name=year] {
     background: #F5C518;
     border-radius: 5px;
     padding: 3px 5px;
+    margin-left: 5px;
 }
 
-/* 电影列表样式（补充，保证页面美观） */
-
-.movie-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 10px 0;
+/* 电影列表表格样式（核心：还原第一张的表格布局） */
+.movie-table {
+    width: 100%;
+    border-collapse: collapse;
     background: white;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     border-radius: 4px;
     overflow: hidden;
+    margin: 10px 0;
 }
 
-
-.movie-list li {
-    padding: 8px;
-    margin: 5px 0;
-    background-color: #f5f5f5;
-    border-radius: 4px;
+.movie-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee; /* 灰色分隔线 */
 }
 
+.movie-table tr:last-child td {
+    border-bottom: none; /* 最后一行去掉分隔线 */
+}
+
+/* 头像样式 */
 .avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-    vertical-align: middle;
+    width:40px;
+    height:100%;
+
 }
 
 /* 龙猫图片 */
+
+
 .totoro {
     display: block;
-    margin: 0 auto;
-    height: 100px;
+    margin: 0 auto;  /* 水平居中 */
+    height: 100px;   /* 还原第一张的高度比例 */
+    width: auto;     /* 保持宽高比，避免拉伸变形 */
+    margin-top: 30px;/* 表格和龙猫之间加间距，和第一张一致 */
+    margin-bottom: 20px; /* 龙猫和页脚之间加间距 */
 }
+
+
+/* 内联表单（让Edit/Delete按钮和IMDb排成一行） */
 .inline-form {
     display: inline;
 }
+
+/* 页脚样式 */
 footer {
     text-align: center;
     margin-top: 30px;
